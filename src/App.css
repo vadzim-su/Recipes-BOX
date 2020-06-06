@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  display: flex;
 }
 
 .App-logo {
@@ -35,4 +36,130 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* ====================================== */
+
+.sidebar {
+  width: 30%;
+  padding: 50px 0;
+  /* background-color: #d5ee9a; */
+  background-color: #ba9cce;
+}
+.main {
+  width: 70%;
+  background-color: #ebe97c;
+  /* background-color: #e7a5a5; */
+  /* padding: 50px 20px; */
+  box-sizing: border-box;
+}
+
+button {
+  outline: none !important;
+  border: none;
+}
+
+textarea {
+  resize: none !important;
+}
+
+.button__bar {
+  padding: 50px 0;
+}
+
+.button__bar > a {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.button__bar > a > div > button {
+  margin: 0 auto;
+  padding: 5px 10px;
+  width: 200px;
+}
+
+.button__remove {
+  background-color: #fc6167;
+}
+
+.button__add {
+  background-color: #1ed293;
+}
+
+.button__show {
+  background-color: rgb(221, 197, 218);
+}
+
+.button__submit {
+  display: flex;
+  justify-content: center;
+}
+
+.button__recipe {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  background-color: #ebe97c;
+  padding: 5px;
+  width: 200px;
+}
+
+.btn-warning {
+  margin-left: 35px;
+}
+
+.form {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+}
+
+.form__wrapper {
+  width: 70%;
+  padding: 50px 20px;
+  margin: auto;
+}
+
+.welcome {
+  height: 100vh;
+  display: flex;
+}
+
+.welcome__wrapper {
+  padding: 50px 20px;
+  margin: auto 0;
+}
+
+.welcome__title {
+  font-size: 45px;
+}
+
+.welcome__save {
+  font-size: 20px;
+}
+
+.welcome__description {
+  font-size: 16px;
+}
+
+.cards__food {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 45%;
+  margin: 20px 20px;
+}
+
+.card__icons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.card__icons i {
+  cursor: pointer;
+  font-size: 20px;
+  margin-left: 40px;
 }
