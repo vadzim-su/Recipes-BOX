@@ -16,11 +16,14 @@ const mapDispatchToProps = (dispatch) => {
           id,
         },
       }),
-    // clickedEdit: () => console.log("edit"),
-    // dispatch({
-    //   type: "SOME_ACTION",
-    //   payload: id,
-    // }),
+
+    clickedEdit: (id) =>
+      dispatch({
+        type: "RECIPES/CLICKED_EDIT",
+        payload: {
+          id,
+        },
+      }),
   };
 };
 

@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import RecipesButtonList from "../components/RecipesButtonList";
+// import Button from "../components/Button";
 
 const mapStateToProps = (state) => {
   return {
@@ -9,14 +10,17 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // onSubmit: () =>
+    // deleteAllRecipes: (e) =>
     //   dispatch({
-    //     type: "FORM/ADD_RECIPE",
-    //     payload: {
-    //       value: 123,
-    //     },
+    //     type: "RECIPES/DELETE_ALL",
     //   }),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(RecipesButtonList);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(
+  RecipesButtonList
+  // Button
+);

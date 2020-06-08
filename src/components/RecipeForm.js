@@ -2,15 +2,17 @@ import React from "react";
 
 function RecipeForm({
   name,
+  url,
   steps,
   onRecipeNameChanged,
+  onRecipeUrlChanged,
   onRecipeStepsChanged,
-  onSubmit,
+  addRecipeToStore,
 }) {
   function submitForm(e) {
     e.preventDefault();
 
-    onSubmit();
+    addRecipeToStore(e);
   }
   return (
     <form className="form" onSubmit={submitForm}>
@@ -22,6 +24,17 @@ function RecipeForm({
             className="form-control"
             placeholder="Recipe name"
             onChange={onRecipeNameChanged}
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <input
+            value={url}
+            type="text"
+            className="form-control"
+            placeholder="Recipe image URL"
+            onChange={onRecipeUrlChanged}
             required
           />
         </div>

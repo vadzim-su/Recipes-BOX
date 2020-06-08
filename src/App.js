@@ -26,7 +26,7 @@ function App() {
               <Button title={"Show All Recipes"} styleName={"button__show"} />
             </Link>
 
-            <Link to="/welcome">
+            <Link to="/">
               <Button
                 title={"Remove All Recipes"}
                 styleName={"button__remove"}
@@ -34,11 +34,11 @@ function App() {
             </Link>
           </div>
           <h2 className="sidebar__list">Recipe List</h2>
-          {/* <RecipesButtonList /> */}
+          <RecipesButtonList />
         </div>
         <div className="main">
           <Switch>
-            <Route exact path="/welcome">
+            <Route exact path="/">
               <Welcome />
             </Route>
 

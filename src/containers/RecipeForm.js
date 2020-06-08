@@ -4,6 +4,7 @@ import RecipeForm from "../components/RecipeForm";
 const mapStateToProps = (state) => {
   return {
     name: state.recipes.recipeName,
+    url: state.recipes.recipeUrl,
     steps: state.recipes.recipeSteps,
     recipes: state.recipes.recipes,
   };
@@ -11,7 +12,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onSubmit: () =>
+    addRecipeToStore: () =>
       dispatch({
         type: "FORM/ADD_RECIPE",
       }),
@@ -19,6 +20,14 @@ const mapDispatchToProps = (dispatch) => {
     onRecipeNameChanged: (e) =>
       dispatch({
         type: "FORM/CHANGED_RECIPE_NAME",
+        payload: {
+          value: e.target.value,
+        },
+      }),
+
+    onRecipeUrlChanged: (e) =>
+      dispatch({
+        type: "FORM/CHANGED_RECIPE_URL",
         payload: {
           value: e.target.value,
         },

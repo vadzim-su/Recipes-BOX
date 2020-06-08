@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   display: flex;
+  height: 100%;
 }
 
 .App-logo {
@@ -43,14 +44,11 @@
 .sidebar {
   width: 30%;
   padding: 50px 0;
-  /* background-color: #d5ee9a; */
   background-color: #ba9cce;
 }
 .main {
   width: 70%;
   background-color: #ebe97c;
-  /* background-color: #e7a5a5; */
-  /* padding: 50px 20px; */
   box-sizing: border-box;
 }
 
@@ -61,6 +59,7 @@ button {
 
 textarea {
   resize: none !important;
+  height: 300px !important;
 }
 
 .button__bar {
@@ -123,6 +122,14 @@ textarea {
 .welcome {
   height: 100vh;
   display: flex;
+  background: linear-gradient(
+      180deg,
+      rgba(235, 233, 124, 0.5) 0%,
+      rgba(235, 233, 124, 1) 100%
+    ),
+    url(./img/501-5011353_salt-bae-funny-memes-stickers-whatsapp-memes.png);
+  background-position: center;
+  background-size: cover;
 }
 
 .welcome__wrapper {
@@ -142,24 +149,59 @@ textarea {
   font-size: 16px;
 }
 
-.cards__food {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
 .card {
   width: 45%;
   margin: 20px 20px;
 }
 
+.card__food {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: auto;
+  box-sizing: border-box;
+}
+
+.card__wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: auto;
+}
+
 .card__icons {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  padding: 0 40px 20px;
 }
 
 .card__icons i {
   cursor: pointer;
   font-size: 20px;
-  margin-left: 40px;
+}
+
+.card__empty {
+  display: block;
+  width: 100%;
+  font-size: 35px;
+  height: 100vh;
+}
+
+.fa-drumstick-bite {
+  animation: chicken 3s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes chicken {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(25deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
 }
