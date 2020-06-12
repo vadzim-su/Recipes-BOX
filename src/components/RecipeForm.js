@@ -41,7 +41,7 @@ function RecipeForm({
 
         <div className="form-group">
           <textarea
-            value={steps}
+            value={steps.join("\n")}
             className="form-control"
             placeholder="Ingredients"
             onChange={onRecipeStepsChanged}

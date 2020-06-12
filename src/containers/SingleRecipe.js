@@ -1,10 +1,9 @@
 import { connect } from "react-redux";
-import Recipes from "../components/Recipes";
+import SingleRecipe from "../components/SingleRecipe";
 
 const mapStateToProps = (state) => {
   return {
     recipes: state.recipes.recipes,
-    errorText: state.recipes.fetchErrorMessage,
   };
 };
 
@@ -17,7 +16,6 @@ const mapDispatchToProps = (dispatch) => {
     //       id,
     //     },
     //   }),
-
     // clickedEdit: (id) =>
     //   dispatch({
     //     type: "RECIPES/CLICKED_EDIT",
@@ -25,12 +23,7 @@ const mapDispatchToProps = (dispatch) => {
     //       id,
     //     },
     //   }),
-
-    fetchRecipes: () =>
-      dispatch({
-        type: "RECIPES/FETCH_RECIPES",
-      }),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Recipes);
+export default connect(mapStateToProps, mapDispatchToProps)(SingleRecipe);

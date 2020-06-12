@@ -1,14 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./App";
+import App from "./containers/App";
 import * as serviceWorker from "./serviceWorker";
 
 import reducer from "./reducers";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import logger from "redux-logger";
-const store = createStore(reducer, applyMiddleware(logger));
+
+import createSagaMiddleware from "redux-saga";
+import recipeSaga from "./sagas/recipeSaga";
+
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(reducer, applyMiddleware(logger, sagaMiddleware));
+
+sagaMiddleware.run(recipeSaga);
 
 ReactDOM.render(
   <React.StrictMode>

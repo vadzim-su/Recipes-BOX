@@ -8,8 +8,9 @@ import Welcome from "./components/Welcome";
 import Recipes from "./containers/Recipes";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
+import SingleRecipe from "./containers/SingleRecipe";
 
-function App() {
+function App({ deleteAllRecipes }) {
   return (
     <Router>
       <div className="App">
@@ -17,6 +18,7 @@ function App() {
           <h1 className="sidebar__title">
             Recipes BOX<i className="fas fa-drumstick-bite"></i>
           </h1>
+
           <div className="button__bar">
             <Link to="/add">
               <Button title={"Add a New Recipe"} styleName={"button__add"} />
@@ -28,18 +30,25 @@ function App() {
 
             <Link to="/">
               <Button
+                onClick={deleteAllRecipes}
                 title={"Remove All Recipes"}
                 styleName={"button__remove"}
               />
             </Link>
           </div>
+
           <h2 className="sidebar__list">Recipe List</h2>
           <RecipesButtonList />
         </div>
+
         <div className="main">
           <Switch>
             <Route exact path="/">
               <Welcome />
+            </Route>
+
+            <Route path={`/recipe/:id`}>
+              <SingleRecipe />
             </Route>
 
             <Route path="/add">

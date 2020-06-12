@@ -1,17 +1,12 @@
 import React from "react";
 
-function Button({ title, styleName, deleteAllRecipes }) {
-  // function clearRecipesField(e) {
-  //   e.preventDefault();
-  //   deleteAllRecipes();
-  // }
-
+function Button({ title, styleName, onClick }) {
+  const onButtonClick = () => {
+    onClick && onClick();
+  };
   return (
     <div>
-      <button
-        className={styleName}
-        // onClick={title === "Remove All Recipes" ? clearRecipesField : null}
-      >
+      <button onClick={onButtonClick} className={styleName}>
         {title}
       </button>
     </div>

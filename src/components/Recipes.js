@@ -1,45 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
+import propTypes from "prop-types";
+import CardRecipe from "./CardRecipe";
 
-function Recipes({ recipes, clickedDelete, clickedEdit }) {
-  function deleteRecipe(id) {
-    if (window.confirm("Are you sure?")) {
-      clickedDelete(id);
-    }
-  }
+function Recipes({ recipes, fetchRecipes }) {
+  useEffect(() => {
+    fetchRecipes();
+  }, []);
 
   return (
     <div className="card__food">
-      {/* <div className="card__wrapper"> */}
       {recipes.length ? (
-        recipes.map((item, id) => (
-          <div className="card" key={id}>
-            <img src={item.url} className="card-img-top" alt="nothing" />
-            <div className="card-body" key={id}>
-              <h2 className="card-title">{item.name}</h2>
-              <div className="card-text">
-                {item.steps.map((item) => (
-                  <p>{item}</p>
-                ))}
-              </div>
-            </div>
-            <div className="card__icons">
-              <i
-                onClick={deleteRecipe.bind(this, id)}
-                className="far fa-trash-alt"
-              ></i>
-              <i
-                onClick={clickedEdit.bind(this, id)}
-                className="fas fa-pencil-alt"
-              ></i>
-            </div>
-          </div>
+        recipes.map((recipe) => (
+          <CardRecipe
+            // deleteRecipe={clickedDelete}
+            // editRecipe={clickedEdit}
+            recipe={recipe}
+          />
         ))
       ) : (
         <span className="card__empty">You have no recipes yet.</span>
       )}
-      {/* </div> */}
     </div>
   );
 }
+
+Recipes.propTypes = {
+  recipes: propTypes.array,
+  fetchRecipes: propTypes.func,
+};
 
 export default Recipes;

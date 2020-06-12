@@ -88,6 +88,7 @@ const initialState = {
   recipeName: "",
   recipeUrl: "",
   recipeSteps: [],
+  fetchErrorMessage: "",
 };
 
 function recipesReducer(state = initialState, action) {
@@ -99,17 +100,19 @@ function recipesReducer(state = initialState, action) {
       return update(state, { $merge: { recipeUrl: action.payload.value } });
 
     case "FORM/CHANGED_RECIPE_STEPS":
-      return update(state, { $merge: { recipeSteps: action.payload.value } });
+      return update(state, {
+        $merge: { recipeSteps: action.payload.value.split("\n") },
+      });
 
     case "FORM/ADD_RECIPE":
       return update(state, {
         recipes: {
           $push: [
             {
-              id: state.recipes.length,
+              id: Date.now(),
               name: state.recipeName,
               url: state.recipeUrl,
-              steps: [state.recipeSteps],
+              steps: state.recipeSteps,
             },
           ],
         },
@@ -124,29 +127,39 @@ function recipesReducer(state = initialState, action) {
       return state;
 
     case "RECIPES/DELETE_ALL":
-      console.log(state.recipes.length);
-      console.log(123);
       return update(state, {
         recipes: { $splice: [[0, state.recipes.length]] },
       });
 
     case "RECIPES/CLICKED_DELETE":
-      const fromState = state.recipes.slice();
+      const recipesFromState = state.recipes.slice();
       let currentRecipe = action.payload.id;
       let indexToRemove;
 
-      fromState.forEach((item, index) => {
+      recipesFromState.forEach((item, index) => {
         if (item.id === currentRecipe) {
           indexToRemove = index;
         }
       });
 
-      fromState.splice(indexToRemove, 1);
+      recipesFromState.splice(indexToRemove, 1);
 
       return update(state, {
         $merge: {
-          recipes: fromState,
+          recipes: recipesFromState,
         },
+      });
+
+    case "RECIPES/FETCH_SUCCESSFULLY":
+      return update(state, {
+        recipes: {
+          $push: action.payload.recipes,
+        },
+      });
+
+    case "RECIPES/FETCH_ERROR":
+      return update(state, {
+        $merge: { fetchErrorMessage: action.payload.message },
       });
 
     default:

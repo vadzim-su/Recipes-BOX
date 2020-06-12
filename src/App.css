@@ -50,6 +50,7 @@
   width: 70%;
   background-color: #ebe97c;
   box-sizing: border-box;
+  display: flex;
 }
 
 button {
@@ -101,6 +102,12 @@ textarea {
   background-color: #ebe97c;
   padding: 5px;
   width: 200px;
+  color: #000;
+}
+
+.button__recipe:hover {
+  text-decoration: none;
+  color: #000;
 }
 
 .btn-warning {
@@ -151,7 +158,7 @@ textarea {
 
 .card {
   width: 45%;
-  margin: 20px 20px;
+  margin: 20px auto;
 }
 
 .card__food {
@@ -188,6 +195,7 @@ textarea {
 }
 
 .fa-drumstick-bite {
+  margin-left: 20px;
   animation: chicken 3s;
   animation-iteration-count: infinite;
 }
