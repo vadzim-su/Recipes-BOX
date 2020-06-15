@@ -2,46 +2,21 @@ import { connect } from "react-redux";
 import RecipeForm from "../components/RecipeForm";
 
 const mapStateToProps = (state, ownProps) => {
-  // let { id } = ownProps.
-  console.log(ownProps);
-  // const recipe = recipes.find((recipe) => String(recipe.id) === id);
+  const recipe = state.recipes.recipes.find(
+    (recipe) => String(recipe.id) === ownProps.match.params.id
+  ) || { name: "", url: "", steps: [] };
+
   return {
-    recipes: state.recipes.recipes,
-    name: state.recipes.recipeName,
-    url: state.recipes.recipeUrl,
-    steps: state.recipes.recipeSteps,
+    recipe: recipe,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addRecipeToStore: () =>
+    onSubmit: (recipe) =>
       dispatch({
-        type: "FORM/ADD_RECIPE",
-      }),
-
-    onRecipeNameChanged: (e) =>
-      dispatch({
-        type: "FORM/CHANGED_RECIPE_NAME",
-        payload: {
-          value: e.target.value,
-        },
-      }),
-
-    onRecipeUrlChanged: (e) =>
-      dispatch({
-        type: "FORM/CHANGED_RECIPE_URL",
-        payload: {
-          value: e.target.value,
-        },
-      }),
-
-    onRecipeStepsChanged: (e) =>
-      dispatch({
-        type: "FORM/CHANGED_RECIPE_STEPS",
-        payload: {
-          value: e.target.value,
-        },
+        type: !recipe.id ? "FORM/ADD_RECIPE" : "RECIPES/EDIT_RECIPE",
+        payload: recipe,
       }),
   };
 };

@@ -1,67 +1,56 @@
 import React from "react";
 import { useState } from "react";
-import { useEffect } from "react";
 
-function RecipeForm(props) {
-  const {
-    name,
-    url,
-    steps,
-    onRecipeNameChanged,
-    onRecipeUrlChanged,
-    onRecipeStepsChanged,
-    addRecipeToStore,
-  } = props;
+function RecipeForm({ recipe, onSubmit }) {
+  const [recipeData, setData] = useState({
+    ...recipe,
+    steps: recipe.steps.join("\n"),
+  });
 
-  console.log(props);
-
-  //   const [name, setName] = useState("");
-  //   const [url, setUrl] = useState("");
-  //   const [steps, setSteps] = useState("");
-
-  // useEffect((e)=>{
-  //   if(item){
-  //     setName(name);
-  //     setUrl(url);
-  //     setSteps(steps);
-  //   }
-  // }, item)
+  const handleInputChange = (e) =>
+    setData({
+      ...recipeData,
+      [e.currentTarget.name]: e.currentTarget.value,
+    });
 
   function submitForm(e) {
     e.preventDefault();
-    addRecipeToStore(e);
+    onSubmit({ ...recipeData, steps: recipeData.steps.split("\n") });
   }
   return (
     <form className="form" onSubmit={submitForm}>
       <div className="form__wrapper">
         <div className="form-group">
           <input
-            value={name}
+            value={recipeData.name}
+            name="name"
             type="text"
             className="form-control"
             placeholder="Recipe name"
-            onChange={onRecipeNameChanged}
+            onChange={handleInputChange}
             required
           />
         </div>
 
         <div className="form-group">
           <input
-            value={url}
+            value={recipeData.url}
+            name="url"
             type="text"
             className="form-control"
             placeholder="Recipe image URL"
-            onChange={onRecipeUrlChanged}
+            onChange={handleInputChange}
             required
           />
         </div>
 
         <div className="form-group">
           <textarea
-            value={steps.join("\n")}
+            value={recipeData.steps}
+            name="steps"
             className="form-control"
             placeholder="Ingredients"
-            onChange={onRecipeStepsChanged}
+            onChange={handleInputChange}
             required
           ></textarea>
         </div>

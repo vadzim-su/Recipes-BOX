@@ -194,6 +194,10 @@ textarea {
   height: 100vh;
 }
 
+.fa-trash-alt {
+  color: #fc6167;
+}
+
 .fa-drumstick-bite {
   margin-left: 20px;
   animation: chicken 3s;

@@ -51,13 +51,9 @@ function App({ deleteAllRecipes }) {
               <SingleRecipe />
             </Route>
 
-            <Route path={"/recipe/edit/:id"}>
-              <RecipeForm />
-            </Route>
+            <Route path={"/recipe/edit/:id"} component={RecipeForm} />
 
-            <Route path="/add">
-              <RecipeForm />
-            </Route>
+            <Route path="/add" component={RecipeForm} />
 
             <Route path="/show">
               <Recipes />

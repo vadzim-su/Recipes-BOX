@@ -85,54 +85,40 @@ const initialState = {
       ],
     },
   ],
-  recipeName: "",
-  recipeUrl: "",
-  recipeSteps: [],
+
   fetchErrorMessage: "",
 };
 
 function recipesReducer(state = initialState, action) {
   switch (action.type) {
-    case "FORM/CHANGED_RECIPE_NAME":
-      return update(state, { $merge: { recipeName: action.payload.value } });
-
-    case "FORM/CHANGED_RECIPE_URL":
-      return update(state, { $merge: { recipeUrl: action.payload.value } });
-
-    case "FORM/CHANGED_RECIPE_STEPS":
-      return update(state, {
-        $merge: { recipeSteps: action.payload.value.split("\n") },
-      });
-
     case "FORM/ADD_RECIPE":
       return update(state, {
         recipes: {
           $push: [
             {
+              ...action.payload,
               id: Date.now(),
-              name: state.recipeName,
-              url: state.recipeUrl,
-              steps: state.recipeSteps,
             },
           ],
         },
-        $merge: {
-          recipeName: initialState.recipeName,
-          recipeUrl: initialState.recipeUrl,
-          recipeSteps: initialState.recipeSteps,
-        },
       });
 
-    case "RECIPES/CLICKED_EDIT":
-      console.log(action.payload.id);
-      return state;
+    case "RECIPES/EDIT_RECIPE": {
+      const index = state.recipes.findIndex(
+        (recipe) => recipe.id === action.payload.id
+      );
+      const newState = { ...state };
 
-    case "RECIPES/DELETE_ALL":
+      newState.recipes.splice(index, 1, action.payload);
+      return newState;
+    }
+
+    case "RECIPES/DELETE_ALL_RECIPES":
       return update(state, {
         recipes: { $splice: [[0, state.recipes.length]] },
       });
 
-    case "RECIPES/CLICKED_DELETE":
+    case "RECIPES/DELETE_SINGLE_RECIPE":
       const recipesFromState = state.recipes.slice();
       let currentRecipe = action.payload.id;
       let indexToRemove;

@@ -7,8 +7,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {};
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(RecipesButtonList);
+export default connect(mapStateToProps, null)(RecipesButtonList);

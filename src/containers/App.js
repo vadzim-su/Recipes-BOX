@@ -8,7 +8,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     deleteAllRecipes: (e) =>
       dispatch({
-        type: "RECIPES/DELETE_ALL",
+        type: "RECIPES/DELETE_ALL_RECIPES",
       }),
   };
 };

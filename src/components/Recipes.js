@@ -16,7 +16,7 @@ function Recipes({ recipes, fetchRecipes, fetchErrorMessage }) {
   return (
     <div className="card__food">
       {recipes.length ? (
-        recipes.map((recipe) => <CardRecipe recipe={recipe} />)
+        recipes.map((recipe) => <CardRecipe recipe={recipe} key={recipe.id} />)
       ) : (
         <span className="card__empty">You have no recipes yet.</span>
       )}

@@ -11,15 +11,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     deleteRecipe: (id) =>
       dispatch({
-        type: "RECIPES/CLICKED_DELETE",
-        payload: {
-          id,
-        },
-      }),
-
-    editRecipe: (id) =>
-      dispatch({
-        type: "RECIPES/CLICKED_EDIT",
+        type: "RECIPES/DELETE_SINGLE_RECIPE",
         payload: {
           id,
         },
