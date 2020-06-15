@@ -4,8 +4,12 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 function RecipesButtonList({ recipes }) {
   return (
     <div>
-      {recipes.map((item, id) => (
-        <Link to={`/recipe/${id}`} className="button__recipe" key={id}>
+      {recipes.map((item) => (
+        <Link
+          to={`/recipe/${item.id}`}
+          className="button__recipe"
+          key={item.id}
+        >
           {item.name}
         </Link>
       ))}

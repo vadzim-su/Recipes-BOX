@@ -3,7 +3,7 @@ import update from "immutability-helper";
 const initialState = {
   recipes: [
     {
-      id: 0,
+      id: 11,
       name: "Spaghetti Carbonara",
       url:
         "https://i.pinimg.com/736x/a0/a2/67/a0a267bf273edd2ba7b4a10e734614f9.jpg",
@@ -19,7 +19,7 @@ const initialState = {
       ],
     },
     {
-      id: 1,
+      id: 22,
       name: "Classic Lasagna",
       url:
         "https://sun9-18.userapi.com/9ZNSGtOYJpQdCu558-k1uXYnFQ7jh47oGUli5w/UAzV-v6mmL4.jpg",
@@ -40,7 +40,7 @@ const initialState = {
       ],
     },
     {
-      id: 2,
+      id: 33,
       name: "Cinnabon",
       url:
         "https://www.confettiandbliss.com/wp-content/uploads/2016/04/Cinnabon-Cinnamon-Rolls-Recipe.jpg",
@@ -63,7 +63,7 @@ const initialState = {
       ],
     },
     {
-      id: 3,
+      id: 44,
       name: "Classic Caesar Salad",
       url:
         "https://assets.bonappetit.com/photos/57ae12ef53e63daf11a4e1d6/16:9/w_2560,c_limit/BA-best-classic-caeser-salad.jpg",
@@ -124,6 +124,7 @@ function recipesReducer(state = initialState, action) {
       });
 
     case "RECIPES/CLICKED_EDIT":
+      console.log(action.payload.id);
       return state;
 
     case "RECIPES/DELETE_ALL":

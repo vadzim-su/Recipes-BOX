@@ -1,22 +1,22 @@
 import React, { useEffect } from "react";
 import propTypes from "prop-types";
-import CardRecipe from "./CardRecipe";
+import CardRecipe from "./../containers/CardRecipe";
 
-function Recipes({ recipes, fetchRecipes }) {
+function Recipes({ recipes, fetchRecipes, fetchErrorMessage }) {
   useEffect(() => {
     fetchRecipes();
   }, []);
 
+  useEffect(() => {
+    if (fetchErrorMessage) {
+      alert(123);
+    }
+  }, [fetchErrorMessage]);
+
   return (
     <div className="card__food">
       {recipes.length ? (
-        recipes.map((recipe) => (
-          <CardRecipe
-            // deleteRecipe={clickedDelete}
-            // editRecipe={clickedEdit}
-            recipe={recipe}
-          />
-        ))
+        recipes.map((recipe) => <CardRecipe recipe={recipe} />)
       ) : (
         <span className="card__empty">You have no recipes yet.</span>
       )}

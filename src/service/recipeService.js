@@ -9,6 +9,12 @@ class recipeService {
     }
     return loadedRecipes;
   }
+
+  // saveRecipes() {
+  //   const savedRecipes = this.getRecipes();
+  //   if (savedRecipes) {
+  //   }
+  // }
 }
 
 export default new recipeService();

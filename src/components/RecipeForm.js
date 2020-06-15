@@ -1,17 +1,34 @@
 import React from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 
-function RecipeForm({
-  name,
-  url,
-  steps,
-  onRecipeNameChanged,
-  onRecipeUrlChanged,
-  onRecipeStepsChanged,
-  addRecipeToStore,
-}) {
+function RecipeForm(props) {
+  const {
+    name,
+    url,
+    steps,
+    onRecipeNameChanged,
+    onRecipeUrlChanged,
+    onRecipeStepsChanged,
+    addRecipeToStore,
+  } = props;
+
+  console.log(props);
+
+  //   const [name, setName] = useState("");
+  //   const [url, setUrl] = useState("");
+  //   const [steps, setSteps] = useState("");
+
+  // useEffect((e)=>{
+  //   if(item){
+  //     setName(name);
+  //     setUrl(url);
+  //     setSteps(steps);
+  //   }
+  // }, item)
+
   function submitForm(e) {
     e.preventDefault();
-
     addRecipeToStore(e);
   }
   return (

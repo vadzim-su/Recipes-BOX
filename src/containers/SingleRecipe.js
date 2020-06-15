@@ -7,23 +7,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    // clickedDelete: (id) =>
-    //   dispatch({
-    //     type: "RECIPES/CLICKED_DELETE",
-    //     payload: {
-    //       id,
-    //     },
-    //   }),
-    // clickedEdit: (id) =>
-    //   dispatch({
-    //     type: "RECIPES/CLICKED_EDIT",
-    //     payload: {
-    //       id,
-    //     },
-    //   }),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(SingleRecipe);
+export default connect(mapStateToProps, null)(SingleRecipe);

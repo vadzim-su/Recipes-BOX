@@ -2,11 +2,11 @@ import { connect } from "react-redux";
 import App from "./../App";
 
 const mapStateToProps = (state) => {
-  return {};
+  return { recipes: state.recipes.recipes };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    deleteAllRecipes: () =>
+    deleteAllRecipes: (e) =>
       dispatch({
         type: "RECIPES/DELETE_ALL",
       }),

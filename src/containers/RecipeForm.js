@@ -1,12 +1,15 @@
 import { connect } from "react-redux";
 import RecipeForm from "../components/RecipeForm";
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
+  // let { id } = ownProps.
+  console.log(ownProps);
+  // const recipe = recipes.find((recipe) => String(recipe.id) === id);
   return {
+    recipes: state.recipes.recipes,
     name: state.recipes.recipeName,
     url: state.recipes.recipeUrl,
     steps: state.recipes.recipeSteps,
-    recipes: state.recipes.recipes,
   };
 };
 
