@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import CardRecipe from "./../components/CardRecipe";
+import Actions from "./../actions/recipes";
 
 const mapStateToProps = (state) => {
   return {
@@ -10,12 +11,11 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     deleteRecipe: (id) =>
-      dispatch({
-        type: "RECIPES/DELETE_SINGLE_RECIPE",
-        payload: {
+      dispatch(
+        Actions["RECIPES/DELETE_SINGLE_RECIPE"]({
           id,
-        },
-      }),
+        })
+      ),
   };
 };
 

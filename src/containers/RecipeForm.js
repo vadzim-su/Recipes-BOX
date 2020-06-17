@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import RecipeForm from "../components/RecipeForm";
+import Actions from "./../actions/recipes";
 
 const mapStateToProps = (state, ownProps) => {
   const recipe = state.recipes.recipes.find(
@@ -14,10 +15,9 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onSubmit: (recipe) =>
-      dispatch({
-        type: !recipe.id ? "FORM/ADD_RECIPE" : "RECIPES/EDIT_RECIPE",
-        payload: recipe,
-      }),
+      dispatch(
+        Actions[!recipe.id ? "FORM/ADD_RECIPE" : "RECIPES/EDIT_RECIPE"](recipe)
+      ),
   };
 };
 

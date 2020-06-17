@@ -92,6 +92,7 @@ const initialState = {
 function recipesReducer(state = initialState, action) {
   switch (action.type) {
     case "FORM/ADD_RECIPE":
+      console.log(action.payload.recipes);
       return update(state, {
         recipes: {
           $push: [
@@ -137,17 +138,24 @@ function recipesReducer(state = initialState, action) {
         },
       });
 
-    case "RECIPES/FETCH_SUCCESSFULLY":
-      return update(state, {
-        recipes: {
-          $push: action.payload.recipes,
-        },
-      });
+    // case "RECIPES/FETCH_SUCCESSFULLY":
+    //   return update(state, {
+    //     $merge: {
+    //       recipes: action.payload.recipes,
+    //     },
+    //   });
 
-    case "RECIPES/FETCH_ERROR":
-      return update(state, {
-        $merge: { fetchErrorMessage: action.payload.message },
-      });
+    // case "RECIPES/FETCH_ERROR":
+    //   return update(state, {
+    //     $merge: { fetchErrorMessage: action.payload.message },
+    //   });
+
+    // case "RECIPES/ADD_NEW_RECIPE_SUCCESSFULLY":
+    //   return update(state, {
+    //     $merge: {
+    //       recipes: action.payload,
+    //     },
+    //   });
 
     default:
       return state;

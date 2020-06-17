@@ -10,11 +10,16 @@ class recipeService {
     return loadedRecipes;
   }
 
-  // saveRecipes() {
-  //   const savedRecipes = this.getRecipes();
-  //   if (savedRecipes) {
-  //   }
-  // }
+  addNewRecipe(newRecipeInfo) {
+    let newRecipe;
+    const savedRecipes = this.getRecipes();
+
+    newRecipe = { id: Date.now(), ...newRecipeInfo };
+    savedRecipes.push(newRecipe);
+
+    window.localStorage.setItem(ALL_RECIPES, JSON.stringify(savedRecipes));
+    return savedRecipes;
+  }
 }
 
 export default new recipeService();

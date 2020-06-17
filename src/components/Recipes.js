@@ -4,12 +4,13 @@ import CardRecipe from "./../containers/CardRecipe";
 
 function Recipes({ recipes, fetchRecipes, fetchErrorMessage }) {
   useEffect(() => {
+    // alert("fetch success");
     fetchRecipes();
   }, []);
 
   useEffect(() => {
     if (fetchErrorMessage) {
-      alert(123);
+      // alert("error text");
     }
   }, [fetchErrorMessage]);
 
