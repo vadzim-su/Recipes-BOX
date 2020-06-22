@@ -10,7 +10,7 @@ function CardRecipe({ recipe: { id, url, name, steps }, deleteRecipe }) {
 
   return (
     <div className="card" key={id}>
-      <img src={url} className="card-img-top" alt="nothing" />
+      <img src={url} className="card-img-top" alt="no recipe image" />
       <div className="card-body">
         <h2 className="card-title">{name}</h2>
         <div className="card-text">

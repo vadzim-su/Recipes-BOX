@@ -1,19 +1,7 @@
-import React, { useEffect } from "react";
-import propTypes from "prop-types";
+import React from "react";
 import CardRecipe from "./../containers/CardRecipe";
 
-function Recipes({ recipes, fetchRecipes, fetchErrorMessage }) {
-  useEffect(() => {
-    // alert("fetch success");
-    fetchRecipes();
-  }, []);
-
-  useEffect(() => {
-    if (fetchErrorMessage) {
-      // alert("error text");
-    }
-  }, [fetchErrorMessage]);
-
+function Recipes({ recipes }) {
   return (
     <div className="card__food">
       {recipes.length ? (
@@ -24,10 +12,5 @@ function Recipes({ recipes, fetchRecipes, fetchErrorMessage }) {
     </div>
   );
 }
-
-Recipes.propTypes = {
-  recipes: propTypes.array,
-  fetchRecipes: propTypes.func,
-};
 
 export default Recipes;

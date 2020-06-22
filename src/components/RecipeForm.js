@@ -7,15 +7,21 @@ function RecipeForm({ recipe, onSubmit }) {
     steps: recipe.steps.join("\n"),
   });
 
-  const handleInputChange = (e) =>
+  const handleInputChange = (e) => {
     setData({
       ...recipeData,
       [e.currentTarget.name]: e.currentTarget.value,
     });
+  };
 
   function submitForm(e) {
     e.preventDefault();
     onSubmit({ ...recipeData, steps: recipeData.steps.split("\n") });
+    setData({
+      name: "",
+      url: "",
+      steps: "",
+    });
   }
   return (
     <form className="form" onSubmit={submitForm}>

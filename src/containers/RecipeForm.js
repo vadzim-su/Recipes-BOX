@@ -6,7 +6,6 @@ const mapStateToProps = (state, ownProps) => {
   const recipe = state.recipes.recipes.find(
     (recipe) => String(recipe.id) === ownProps.match.params.id
   ) || { name: "", url: "", steps: [] };
-
   return {
     recipe: recipe,
   };
@@ -16,7 +15,11 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onSubmit: (recipe) =>
       dispatch(
-        Actions[!recipe.id ? "FORM/ADD_RECIPE" : "RECIPES/EDIT_RECIPE"](recipe)
+        Actions[
+          !recipe.id
+            ? "RECIPES/SAVE_NEW_RECIPE"
+            : "RECIPES/EDIT_RECIPE_SUCCESSFULLY"
+        ](recipe)
       ),
   };
 };

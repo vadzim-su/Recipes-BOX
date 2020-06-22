@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import Button from "./components/Button";
 import RecipeForm from "./containers/RecipeForm";
@@ -10,7 +10,22 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
 import SingleRecipe from "./containers/SingleRecipe";
 
-function App({ deleteAllRecipes }) {
+function App({ deleteAllRecipes, fetchErrorMessage, fetchRecipes }) {
+  useEffect(() => {
+    fetchRecipes();
+  }, []);
+
+  useEffect(() => {
+    if (fetchErrorMessage) {
+      alert({ fetchErrorMessage });
+    }
+  }, [fetchErrorMessage]);
+
+  function onDelete() {
+    if (window.confirm("Are you sure?")) {
+      deleteAllRecipes();
+    }
+  }
   return (
     <Router>
       <div className="App">
@@ -30,7 +45,7 @@ function App({ deleteAllRecipes }) {
 
             <Link to="/">
               <Button
-                onClick={deleteAllRecipes}
+                onClick={onDelete}
                 title={"Remove All Recipes"}
                 styleName={"button__remove"}
               />
