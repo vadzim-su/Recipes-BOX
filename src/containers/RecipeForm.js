@@ -15,11 +15,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onSubmit: (recipe) =>
       dispatch(
-        Actions[
-          !recipe.id
-            ? "RECIPES/SAVE_NEW_RECIPE"
-            : "RECIPES/EDIT_RECIPE_SUCCESSFULLY"
-        ](recipe)
+        Actions[!recipe.id ? "RECIPES/SAVE_NEW_RECIPE" : "RECIPES/EDIT_RECIPE"](
+          recipe
+        )
       ),
   };
 };
