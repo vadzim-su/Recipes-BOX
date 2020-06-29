@@ -9,8 +9,11 @@ import Recipes from "./containers/Recipes";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
 import SingleRecipe from "./containers/SingleRecipe";
+import { createBrowserHistory } from "history";
 
-function App({ deleteAllRecipes, fetchErrorMessage, fetchRecipes }) {
+function App({ deleteAllRecipes, fetchErrorMessage, fetchRecipes, recipes }) {
+  const history = createBrowserHistory();
+  console.log(history);
   useEffect(() => {
     fetchRecipes();
   }, []);
@@ -22,12 +25,16 @@ function App({ deleteAllRecipes, fetchErrorMessage, fetchRecipes }) {
   }, [fetchErrorMessage]);
 
   function onDelete() {
+    let currentUrl = "/" + window.location.href.split("/").reverse()[0];
+    console.log(currentUrl);
     if (window.confirm("Are you sure?")) {
       deleteAllRecipes();
+    } else {
+      history.push(currentUrl);
     }
   }
   return (
-    <Router>
+    <Router history={history}>
       <div className="App">
         <div className="sidebar">
           <h1 className="sidebar__title">
@@ -52,15 +59,15 @@ function App({ deleteAllRecipes, fetchErrorMessage, fetchRecipes }) {
             </Link>
           </div>
 
-          <h2 className="sidebar__list">Recipe List</h2>
+          <h2 className="sidebar__list">
+            {recipes.length ? "Recipe List" : null}
+          </h2>
           <RecipesButtonList />
         </div>
 
         <div className="main">
           <Switch>
-            <Route exact path="/">
-              <Welcome />
-            </Route>
+            <Route exact path="/" component={Welcome} />
 
             <Route exact path={"/recipe/:id"}>
               <SingleRecipe />

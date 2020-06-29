@@ -1,7 +1,9 @@
 import React from "react";
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 function RecipeForm({ recipe, onSubmit }) {
+  const history = useHistory();
   const [recipeData, setData] = useState({
     ...recipe,
     steps: recipe.steps.join("\n"),
@@ -22,9 +24,20 @@ function RecipeForm({ recipe, onSubmit }) {
       url: "",
       steps: "",
     });
+    history.push("/show");
   }
+
+  function cancelForm(e) {
+    e.preventDefault();
+    setData({
+      name: "",
+      url: "",
+      steps: "",
+    });
+  }
+
   return (
-    <form className="form" onSubmit={submitForm}>
+    <form className="form">
       <div className="form__wrapper">
         <div className="form-group">
           <input
@@ -62,11 +75,11 @@ function RecipeForm({ recipe, onSubmit }) {
         </div>
 
         <div className="button__submit"></div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary" onClick={submitForm}>
           OK
         </button>
 
-        <button type="button" className="btn btn-warning">
+        <button type="button" className="btn btn-warning" onClick={cancelForm}>
           Cancel
         </button>
       </div>
