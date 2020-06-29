@@ -5,11 +5,9 @@ function Button({ title, styleName, onClick }) {
     onClick && onClick();
   };
   return (
-    <div>
-      <button onClick={onButtonClick} className={styleName}>
-        {title}
-      </button>
-    </div>
+    <button onClick={onButtonClick} className={styleName}>
+      {title}
+    </button>
   );
 }
 

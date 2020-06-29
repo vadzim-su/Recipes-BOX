@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 function RecipeForm({ recipe, onSubmit }) {
@@ -18,13 +17,15 @@ function RecipeForm({ recipe, onSubmit }) {
 
   function submitForm(e) {
     e.preventDefault();
-    onSubmit({ ...recipeData, steps: recipeData.steps.split("\n") });
-    setData({
-      name: "",
-      url: "",
-      steps: "",
-    });
-    history.push("/show");
+
+      onSubmit({ ...recipeData, steps: recipeData.steps.split("\n") });
+      setData({
+        name: "",
+        url: "",
+        steps: "",
+      });
+      history.push("/show");
+    }
   }
 
   function cancelForm(e) {
@@ -47,7 +48,6 @@ function RecipeForm({ recipe, onSubmit }) {
             className="form-control"
             placeholder="Recipe name"
             onChange={handleInputChange}
-            required
           />
         </div>
 
@@ -59,7 +59,6 @@ function RecipeForm({ recipe, onSubmit }) {
             className="form-control"
             placeholder="Recipe image URL"
             onChange={handleInputChange}
-            required
           />
         </div>
 
@@ -70,7 +69,6 @@ function RecipeForm({ recipe, onSubmit }) {
             className="form-control"
             placeholder="Ingredients"
             onChange={handleInputChange}
-            required
           ></textarea>
         </div>
 
