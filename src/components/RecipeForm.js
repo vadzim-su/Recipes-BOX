@@ -18,6 +18,7 @@ function RecipeForm({ recipe, onSubmit }) {
   function submitForm(e) {
     e.preventDefault();
 
+    if (recipeData.name && recipeData.url && recipeData.steps) {
       onSubmit({ ...recipeData, steps: recipeData.steps.split("\n") });
       setData({
         name: "",
