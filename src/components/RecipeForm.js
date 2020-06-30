@@ -36,6 +36,7 @@ function RecipeForm({ recipe, onSubmit }) {
       url: "",
       steps: "",
     });
+    history.push("/show");
   }
 
   return (
