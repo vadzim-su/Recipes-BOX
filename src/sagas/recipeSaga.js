@@ -1,4 +1,4 @@
-import { call, put, takeLatest, all, select } from "redux-saga/effects";
+import { call, put, takeLatest, all } from "redux-saga/effects";
 
 import recipeService from "./../service/recipeService";
 
@@ -15,8 +15,8 @@ function* fetchRecipes() {
 
 function* addRecipe(action) {
   try {
-    let recipes = yield call(recipeService.addNewRecipe, action.payload);
-    yield put(Actions["RECIPES/ADD_NEW_RECIPE_SUCCESSFULLY"](recipes));
+    let newRecipe = yield call(recipeService.addNewRecipe, action.payload);
+    yield put(Actions["RECIPES/ADD_NEW_RECIPE_SUCCESSFULLY"](newRecipe));
   } catch ({ message }) {
     yield put({ type: "RECIPES/DATA_ERROR", payload: { message } });
   }

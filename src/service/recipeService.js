@@ -1,4 +1,5 @@
 const ALL_RECIPES = "LOCALSTORAGE_RECIPES";
+const url = "https://recipe-box-ec2cb.firebaseio.com/recipes/.json";
 
 class recipeService {
   constructor() {
@@ -10,27 +11,26 @@ class recipeService {
   }
 
   getRecipes() {
-    let localStorageRecipes = localStorage.getItem(ALL_RECIPES);
-    let loadedRecipes = [];
-    if (localStorageRecipes) {
-      loadedRecipes = JSON.parse(localStorageRecipes);
-    }
-    return loadedRecipes || [];
+    return fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        if (!data) return [];
+        const recipeArray = Object.entries(data);
+        const recipes = recipeArray.map(([id, recipe]) => ({
+          ...recipe,
+          id,
+        }));
+        return recipes;
+      });
   }
 
   addNewRecipe(newRecipeInfo) {
-    let newRecipe;
-    let savedRecipes = this.getRecipes();
-
-    if (!savedRecipes) {
-      throw { message: "Smth went wrong" };
-    }
-
-    newRecipe = { id: Date.now(), ...newRecipeInfo };
-    savedRecipes.push(newRecipe);
-
-    window.localStorage.setItem(ALL_RECIPES, JSON.stringify(savedRecipes));
-    return savedRecipes;
+    return fetch(url, {
+      method: "POST",
+      body: JSON.stringify(newRecipeInfo),
+    })
+      .then((res) => res.json())
+      .then(({ name }) => ({ id: name, ...newRecipeInfo }));
   }
 
   deleteRecipes() {

@@ -22,12 +22,11 @@ function recipesReducer(state = initialState, action) {
 
     // ==============================================
 
-    case "RECIPES/ADD_NEW_RECIPE_SUCCESSFULLY":
-      return update(state, {
-        $merge: {
-          recipes: action.payload,
-        },
-      });
+    case "RECIPES/ADD_NEW_RECIPE_SUCCESSFULLY": {
+      const recipes = state.recipes.slice();
+      recipes.push(action.payload);
+      return { ...state, recipes };
+    }
 
     // ==============================================
 

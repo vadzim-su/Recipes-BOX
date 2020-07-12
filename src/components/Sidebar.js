@@ -2,6 +2,7 @@ import React from "react";
 import Controls from "./Controls";
 import RecipesButtonList from "./../containers/RecipesButtonList";
 import { useHistory } from "react-router-dom";
+import AuthForm from "./AuthForm";
 
 function Sidebar({ recipes, deleteAllRecipes }) {
   const history = useHistory();
@@ -14,6 +15,7 @@ function Sidebar({ recipes, deleteAllRecipes }) {
   }
   return (
     <div className="sidebar">
+      <AuthForm />
       <h1 className="sidebar__title">
         Recipes BOX<i className="fas fa-drumstick-bite"></i>
       </h1>

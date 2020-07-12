@@ -1,16 +1,16 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function RecipesButtonList({ recipes }) {
   return (
     <div>
-      {recipes.map((item) => (
+      {recipes.map((recipe) => (
         <Link
-          to={`/recipe/${item.id}`}
+          to={`/recipe/${recipe.id}`}
           className="button__recipe"
-          key={item.id}
+          key={recipe.id}
         >
-          {item.name}
+          {recipe.name}
         </Link>
       ))}
     </div>
