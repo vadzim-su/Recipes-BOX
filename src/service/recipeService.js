@@ -35,9 +35,9 @@ class recipeService {
   }
 
   deleteRecipes() {
-    const savedRecipes = [];
-    window.localStorage.setItem(ALL_RECIPES, JSON.stringify(savedRecipes));
-    return savedRecipes;
+    return fetch(url, {
+      method: "DELETE",
+    });
   }
 
   deleteSingleRecipe(id) {

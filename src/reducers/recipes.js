@@ -40,12 +40,9 @@ function recipesReducer(state = initialState, action) {
 
     // ==============================================
 
-    case "RECIPES/DELETE_ALL_RECIPES_SUCCESSFULLY":
-      return update(state, {
-        $merge: {
-          recipes: action.payload,
-        },
-      });
+    case "RECIPES/DELETE_ALL_RECIPES_SUCCESSFULLY": {
+      return { ...state, recipes: [] };
+    }
 
     // ==============================================
 
