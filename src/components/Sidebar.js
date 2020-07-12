@@ -2,11 +2,11 @@ import React from "react";
 import Controls from "./Controls";
 import RecipesButtonList from "./../containers/RecipesButtonList";
 import { useHistory } from "react-router-dom";
-import AuthForm from "./AuthForm";
+// import AuthForm from "./AuthForm";
 
 function Sidebar({ recipes, deleteAllRecipes }) {
   const history = useHistory();
-
+  console.log(recipes);
   function onDelete() {
     if (window.confirm("Are you sure?")) {
       deleteAllRecipes();
@@ -15,7 +15,7 @@ function Sidebar({ recipes, deleteAllRecipes }) {
   }
   return (
     <div className="sidebar">
-      <AuthForm />
+      {/* <AuthForm /> */}
       <h1 className="sidebar__title">
         Recipes BOX<i className="fas fa-drumstick-bite"></i>
       </h1>

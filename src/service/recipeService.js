@@ -1,5 +1,6 @@
 const ALL_RECIPES = "LOCALSTORAGE_RECIPES";
-const url = "https://recipe-box-ec2cb.firebaseio.com/recipes/.json";
+const url = "https://recipe-box-ec2cb.firebaseio.com/recipes.json";
+const recipesURL = "https://recipe-box-ec2cb.firebaseio.com/recipes";
 
 class recipeService {
   constructor() {
@@ -39,20 +40,10 @@ class recipeService {
     return savedRecipes;
   }
 
-  deleteSingleRecipe(deletedRecipeId) {
-    let savedRecipes = this.getRecipes();
-    let indexToRemove;
-
-    savedRecipes.forEach((item, index) => {
-      if (item.id === deletedRecipeId) {
-        indexToRemove = index;
-      }
-    });
-
-    savedRecipes.splice(indexToRemove, 1);
-
-    window.localStorage.setItem(ALL_RECIPES, JSON.stringify(savedRecipes));
-    return savedRecipes;
+  deleteSingleRecipe(id) {
+    return fetch(`${recipesURL}/${id}.json`, {
+      method: "DELETE",
+    }).then(() => id);
   }
 
   editRecipe(editedRecipe) {

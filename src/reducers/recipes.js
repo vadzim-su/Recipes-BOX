@@ -30,12 +30,13 @@ function recipesReducer(state = initialState, action) {
 
     // ==============================================
 
-    case "RECIPES/DELETE_SINGLE_RECIPE_SUCCESSFULLY":
-      return update(state, {
-        $merge: {
-          recipes: action.payload,
-        },
-      });
+    case "RECIPES/DELETE_SINGLE_RECIPE_SUCCESSFULLY": {
+      const recipes = state.recipes.filter(
+        (recipe) => recipe.id !== action.payload
+      );
+
+      return { ...state, recipes };
+    }
 
     // ==============================================
 

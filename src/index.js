@@ -10,7 +10,7 @@ import { createStore, applyMiddleware } from "redux";
 
 import createSagaMiddleware from "redux-saga";
 import recipeSaga from "./sagas/recipeSaga";
-import * as firebase from "firebase";
+// import * as firebase from "firebase";
 
 const sagaMiddleware = createSagaMiddleware();
 // const store = createStore(reducer, applyMiddleware(logger, sagaMiddleware));
@@ -26,7 +26,7 @@ const firebaseConfig = {
   measurementId: "G-1W2R8Q7QCH",
 };
 
-firebase.initializeApp(firebaseConfig);
+// firebase.initializeApp(firebaseConfig);
 
 sagaMiddleware.run(recipeSaga);
 

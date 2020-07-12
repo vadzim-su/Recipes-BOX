@@ -33,11 +33,8 @@ function* deleteAllRecipes() {
 
 function* deleteRecipe(action) {
   try {
-    let recipes = yield call(
-      recipeService.deleteSingleRecipe,
-      action.payload.id
-    );
-    yield put(Actions["RECIPES/DELETE_SINGLE_RECIPE_SUCCESSFULLY"](recipes));
+    let id = yield call(recipeService.deleteSingleRecipe, action.payload.id);
+    yield put(Actions["RECIPES/DELETE_SINGLE_RECIPE_SUCCESSFULLY"](id));
   } catch ({ message }) {
     yield put({ type: "RECIPES/DATA_ERROR", payload: { message } });
   }
