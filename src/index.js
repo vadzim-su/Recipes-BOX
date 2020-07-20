@@ -6,15 +6,15 @@ import * as serviceWorker from "./serviceWorker";
 import reducer from "./reducers";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
-// import logger from "redux-logger";
+import logger from "redux-logger";
 
 import createSagaMiddleware from "redux-saga";
 import recipeSaga from "./sagas/recipeSaga";
 // import * as firebase from "firebase";
 
 const sagaMiddleware = createSagaMiddleware();
-// const store = createStore(reducer, applyMiddleware(logger, sagaMiddleware));
-const store = createStore(reducer, applyMiddleware(sagaMiddleware));
+const store = createStore(reducer, applyMiddleware(logger, sagaMiddleware));
+// const store = createStore(reducer, applyMiddleware(sagaMiddleware));
 const firebaseConfig = {
   apiKey: "AIzaSyDkG4l3voRR-iorcaE_tTFazlalADvyMOE",
   authDomain: "recipe-box-ec2cb.firebaseapp.com",

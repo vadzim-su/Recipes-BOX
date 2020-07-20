@@ -2,7 +2,6 @@ import update from "immutability-helper";
 
 const initialState = {
   recipes: [],
-
   fetchErrorMessage: "",
 };
 
@@ -34,7 +33,6 @@ function recipesReducer(state = initialState, action) {
       const recipes = state.recipes.filter(
         (recipe) => recipe.id !== action.payload
       );
-
       return { ...state, recipes };
     }
 
@@ -46,12 +44,14 @@ function recipesReducer(state = initialState, action) {
 
     // ==============================================
 
-    case "RECIPES/EDIT_RECIPE_SUCCESSFULLY":
-      return update(state, {
-        $merge: {
-          recipes: action.payload,
-        },
-      });
+    case "RECIPES/EDIT_RECIPE_SUCCESSFULLY": {
+      const recipes = state.recipes.slice();
+      const editedIndex = recipes.findIndex(
+        (recipe) => recipe.id === action.payload.id
+      );
+      recipes.splice(editedIndex, 1, action.payload);
+      return { ...state, recipes };
+    }
 
     // ==============================================
 

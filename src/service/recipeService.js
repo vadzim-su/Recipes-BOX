@@ -47,15 +47,12 @@ class recipeService {
   }
 
   editRecipe(editedRecipe) {
-    let savedRecipes = this.getRecipes();
-    const index = savedRecipes.findIndex(
-      (recipe) => recipe.id === editedRecipe.id
-    );
-
-    savedRecipes.splice(index, 1, editedRecipe);
-    window.localStorage.setItem(ALL_RECIPES, JSON.stringify(savedRecipes));
-
-    return savedRecipes;
+    const databaseRecipe = { ...editedRecipe }
+    delete databaseRecipe['id']
+    return fetch(`${recipesURL}/${editedRecipe.id}.json`, {
+      method: "PUT",
+      body: JSON.stringify(databaseRecipe)
+    }).then(() => (editedRecipe));
   }
 }
 

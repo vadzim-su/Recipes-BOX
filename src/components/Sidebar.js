@@ -6,7 +6,6 @@ import { useHistory } from "react-router-dom";
 
 function Sidebar({ recipes, deleteAllRecipes }) {
   const history = useHistory();
-  console.log(recipes);
   function onDelete() {
     if (window.confirm("Are you sure?")) {
       deleteAllRecipes();
