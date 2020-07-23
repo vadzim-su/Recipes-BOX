@@ -4,7 +4,7 @@ import RecipeForm from "./containers/RecipeForm";
 import "bootstrap/dist/css/bootstrap.css";
 import Welcome from "./components/Welcome";
 import Recipes from "./containers/Recipes";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
 import SingleRecipe from "./containers/SingleRecipe";
 import Sidebar from "./components/Sidebar";

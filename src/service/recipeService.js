@@ -1,4 +1,3 @@
-const ALL_RECIPES = "LOCALSTORAGE_RECIPES";
 const url = "https://recipe-box-ec2cb.firebaseio.com/recipes.json";
 const recipesURL = "https://recipe-box-ec2cb.firebaseio.com/recipes";
 
@@ -47,12 +46,12 @@ class recipeService {
   }
 
   editRecipe(editedRecipe) {
-    const databaseRecipe = { ...editedRecipe }
-    delete databaseRecipe['id']
+    const databaseRecipe = { ...editedRecipe };
+    delete databaseRecipe["id"];
     return fetch(`${recipesURL}/${editedRecipe.id}.json`, {
       method: "PUT",
-      body: JSON.stringify(databaseRecipe)
-    }).then(() => (editedRecipe));
+      body: JSON.stringify(databaseRecipe),
+    }).then(() => editedRecipe);
   }
 }
 

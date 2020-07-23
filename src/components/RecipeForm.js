@@ -18,12 +18,18 @@ function RecipeForm({ recipe, onSubmit }) {
   function submitForm(e) {
     e.preventDefault();
 
-    if (recipeData.name && recipeData.url && recipeData.steps) {
+    if (
+      recipeData.name &&
+      recipeData.url &&
+      recipeData.steps &&
+      recipeData.kind
+    ) {
       onSubmit({ ...recipeData, steps: recipeData.steps.split("\n") });
       setData({
         name: "",
         url: "",
         steps: "",
+        kind: "",
       });
       history.push("/show");
     }
@@ -35,6 +41,7 @@ function RecipeForm({ recipe, onSubmit }) {
       name: "",
       url: "",
       steps: "",
+      kind: "",
     });
     history.push("/show");
   }
@@ -73,6 +80,24 @@ function RecipeForm({ recipe, onSubmit }) {
             onChange={handleInputChange}
           ></textarea>
         </div>
+
+        <select
+          className="form-group"
+          onChange={handleInputChange}
+          name="kind"
+          value={recipeData.kind}
+        >
+          <option value="" hidden disabled selected>
+            Choose the kind of dish
+          </option>
+          <option>Salads</option>
+          <option>Snacks</option>
+          <option>Meat</option>
+          <option>Fish</option>
+          <option>For vegans</option>
+          <option>Deserts</option>
+          <option>Beverages</option>
+        </select>
 
         <div className="button__submit"></div>
         <button type="submit" className="btn btn-primary" onClick={submitForm}>
