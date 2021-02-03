@@ -5,6 +5,7 @@ import Actions from "./../actions/recipes";
 const mapStateToProps = (state) => {
   return {
     recipes: state.recipes.recipes,
+    types: state.recipes.types,
   };
 };
 

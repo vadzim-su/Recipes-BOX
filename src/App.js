@@ -9,9 +9,19 @@ import "./../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
 import SingleRecipe from "./containers/SingleRecipe";
 import Sidebar from "./components/Sidebar";
 
-function App({ deleteAllRecipes, fetchErrorMessage, fetchRecipes, recipes }) {
+function App({
+  deleteAllRecipes,
+  fetchErrorMessage,
+  fetchRecipes,
+  recipes,
+  getRecipesTypes,
+}) {
   useEffect(() => {
     fetchRecipes();
+  }, []);
+
+  useEffect(() => {
+    getRecipesTypes();
   }, []);
 
   useEffect(() => {

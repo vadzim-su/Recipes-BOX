@@ -49,6 +49,15 @@ function* editCurrentRecipe(action) {
   }
 }
 
+function* getRecipesTypes(action) {
+  try {
+    let types = yield call(recipeService.getTypes, action.payload);
+    yield put(Actions["RECIPES/FETCH_TYPES_SUCCESSFULLY"](types));
+  } catch ({ message }) {
+    yield put({ type: "RECIPES/DATA_ERROR", payload: { message } });
+  }
+}
+
 // ========================================================
 
 function* fetchRecipesSaga() {
@@ -71,6 +80,10 @@ function* editRecipesSaga() {
   yield takeLatest("RECIPES/EDIT_RECIPE", editCurrentRecipe);
 }
 
+function* fetchTypesSaga() {
+  yield takeLatest("RECIPES/FETCH_TYPES", getRecipesTypes);
+}
+
 export default function* recipeSaga() {
   yield all([
     fetchRecipesSaga(),
@@ -78,5 +91,6 @@ export default function* recipeSaga() {
     deleteRecipeSaga(),
     deleteAllRecipesSaga(),
     editRecipesSaga(),
+    fetchTypesSaga(),
   ]);
 }

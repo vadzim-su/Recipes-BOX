@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-function RecipeForm({ recipe, onSubmit }) {
+function RecipeForm({ recipe, onSubmit, types }) {
   const history = useHistory();
   const [recipeData, setData] = useState({
     ...recipe,
@@ -22,14 +22,14 @@ function RecipeForm({ recipe, onSubmit }) {
       recipeData.name &&
       recipeData.url &&
       recipeData.steps &&
-      recipeData.kind
+      recipeData.type
     ) {
       onSubmit({ ...recipeData, steps: recipeData.steps.split("\n") });
       setData({
         name: "",
         url: "",
         steps: "",
-        kind: "",
+        type: "",
       });
       history.push("/show");
     }
@@ -41,7 +41,7 @@ function RecipeForm({ recipe, onSubmit }) {
       name: "",
       url: "",
       steps: "",
-      kind: "",
+      type: "",
     });
     history.push("/show");
   }
@@ -81,23 +81,19 @@ function RecipeForm({ recipe, onSubmit }) {
           ></textarea>
         </div>
 
-        <select
+        {/* <select
           className="form-group"
           onChange={handleInputChange}
-          name="kind"
-          value={recipeData.kind}
+          name="type"
+          value={recipeData.type}
         >
           <option value="" hidden disabled selected>
-            Choose the kind of dish
+            Choose the type of dish
           </option>
-          <option>Salads</option>
-          <option>Snacks</option>
-          <option>Meat</option>
-          <option>Fish</option>
-          <option>For vegans</option>
-          <option>Deserts</option>
-          <option>Beverages</option>
-        </select>
+          {Object.values(types).map((type, id) => (
+            <option key={id}>{type}</option>
+          ))}
+        </select> */}
 
         <div className="button__submit"></div>
         <button type="submit" className="btn btn-primary" onClick={submitForm}>

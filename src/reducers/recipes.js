@@ -2,6 +2,7 @@ import update from "immutability-helper";
 
 const initialState = {
   recipes: [],
+  types: {},
   fetchErrorMessage: "",
 };
 
@@ -51,6 +52,10 @@ function recipesReducer(state = initialState, action) {
       );
       recipes.splice(editedIndex, 1, action.payload);
       return { ...state, recipes };
+    }
+
+    case "RECIPES/FETCH_TYPES_SUCCESSFULLY": {
+      return { ...state, types: action.payload };
     }
 
     // ==============================================
