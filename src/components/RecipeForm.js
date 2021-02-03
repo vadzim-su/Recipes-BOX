@@ -81,7 +81,7 @@ function RecipeForm({ recipe, onSubmit, types }) {
           ></textarea>
         </div>
 
-        {/* <select
+        <select
           className="form-group"
           onChange={handleInputChange}
           name="type"
@@ -93,7 +93,7 @@ function RecipeForm({ recipe, onSubmit, types }) {
           {Object.values(types).map((type, id) => (
             <option key={id}>{type}</option>
           ))}
-        </select> */}
+        </select>
 
         <div className="button__submit"></div>
         <button type="submit" className="btn btn-primary" onClick={submitForm}>
