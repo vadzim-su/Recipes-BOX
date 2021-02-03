@@ -1,5 +1,6 @@
-const ALL_RECIPES = "LOCALSTORAGE_RECIPES";
 const url = "https://recipe-box-ec2cb.firebaseio.com/recipes.json";
+// const url = "https://recipe-box-ec2cb.firebaseio.com/.json";
+const urlWithTypes = "https://recipe-box-ec2cb.firebaseio.com/types.json";
 const recipesURL = "https://recipe-box-ec2cb.firebaseio.com/recipes";
 
 class recipeService {
@@ -9,6 +10,7 @@ class recipeService {
     this.deleteSingleRecipe = this.deleteSingleRecipe.bind(this);
     this.deleteRecipes = this.deleteRecipes.bind(this);
     this.editRecipe = this.editRecipe.bind(this);
+    this.getTypes = this.getTypes.bind(this);
   }
 
   getRecipes() {
@@ -47,12 +49,16 @@ class recipeService {
   }
 
   editRecipe(editedRecipe) {
-    const databaseRecipe = { ...editedRecipe }
-    delete databaseRecipe['id']
+    const databaseRecipe = { ...editedRecipe };
+    delete databaseRecipe["id"];
     return fetch(`${recipesURL}/${editedRecipe.id}.json`, {
       method: "PUT",
-      body: JSON.stringify(databaseRecipe)
-    }).then(() => (editedRecipe));
+      body: JSON.stringify(databaseRecipe),
+    }).then(() => editedRecipe);
+  }
+
+  getTypes() {
+    return fetch(urlWithTypes).then((res) => res.json());
   }
 }
 

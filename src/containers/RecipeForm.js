@@ -8,6 +8,7 @@ const mapStateToProps = (state, ownProps) => {
   ) || { name: "", url: "", steps: [] };
   return {
     recipe: recipe,
+    types: state.recipes.types,
   };
 };
 

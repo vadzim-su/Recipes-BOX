@@ -10,6 +10,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     deleteAllRecipes: () => dispatch(Actions["RECIPES/DELETE_ALL_RECIPES"]()),
     fetchRecipes: () => dispatch(Actions["RECIPES/FETCH_RECIPES"]()),
+    getRecipesTypes: () => dispatch(Actions["RECIPES/FETCH_TYPES"]()),
   };
 };
 
